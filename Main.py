@@ -1,27 +1,22 @@
 from fastapi import FastAPI, HTTPException
 from supabase import create_client, Client
-from dotenv import load_dotenv
 import os
 import sys
-import uvicorn
 import httpx
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Retrieve environment variables
+# Retrieve environment variables directly
 url: str = os.getenv("SUPABASE_URL")
 key: str = os.getenv("SUPABASE_KEY")
 
 # Validate environment variables
 if not url or not key:
-    print("Supabase URL or API key is missing. Check your .env file.")
+    print("Supabase URL or API key is missing. Check your environment variables.")
     sys.exit(1)  # Exit the application if the environment variables are not set
 
 # Initialize Supabase client
 supabase: Client = create_client(url, key)
 
-app = FastAPI(title=f"Jose's Resume API")
+app = FastAPI(title="Jose's Resume API")
 
 @app.get("/ResumeSummary/")
 async def read_resume_summary():
@@ -114,6 +109,3 @@ async def read_resume_projects():
     
     projects = [record['Projects'] for record in data]
     return projects
-
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
