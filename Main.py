@@ -7,7 +7,7 @@ import uvicorn
 import httpx
 
 # Load environment variables from .env file
-load_dotenv()
+##load_dotenv()
 
 # Retrieve environment variables
 url: str = os.getenv("SUPABASE_URL")
