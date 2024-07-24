@@ -7,7 +7,7 @@ import uvicorn
 import httpx
 
 # Load environment variables from .env file
-##load_dotenv()
+load_dotenv()
 
 # Retrieve environment variables
 url: str = os.getenv("SUPABASE_URL")
@@ -115,5 +115,5 @@ async def read_resume_projects():
     projects = [record['Projects'] for record in data]
     return projects
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
